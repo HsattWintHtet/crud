@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'control/control.dart';
 import 'source/data.dart';
+import './model/dataModel.dart';
 
 class MyHomePage extends StatefulWidget {
   @override
@@ -8,15 +8,11 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final  control = Control();
+
   @override
   void initState() {
     super.initState();
-    // Future.delayed(Duration(seconds: 1), () {
-      setState(() {
-        control.data();
-      });
-    // });
+
     print("ddd");
   }
   @override
@@ -24,10 +20,12 @@ class _MyHomePageState extends State<MyHomePage> {
     super.deactivate();
     print("deactivate");
   }
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     print("didChangeDependencies");
+
   }
   @override
   void didUpdateWidget(MyHomePage oldWidget) {
@@ -53,14 +51,14 @@ class _MyHomePageState extends State<MyHomePage> {
       body: SingleChildScrollView(
         // child: Padding(
         //   padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: <Widget>[
-              PaginatedDataTable(
+          // child: Column(
+          //   children: <Widget>[
+            child:  PaginatedDataTable(
                 header: Text(
                   "Register List",
                   style: TextStyle(color: Colors.amber),
                 ),
-                source: DataSource(context),
+                source:DataSource(context),
                 rowsPerPage: 5,
                 // availableRowsPerPage: [5,10,15,20],
                 sortAscending: _sortAscending,
@@ -110,8 +108,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   ))
                 ],
               ),
-            ],
-          ),
+          //   ],
+          // ),
         // ),
       ),
       floatingActionButton: FloatingActionButton(onPressed: (){

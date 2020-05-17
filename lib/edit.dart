@@ -1,6 +1,7 @@
-import 'package:crud/control/control.dart';
+
 import 'package:flutter/material.dart';
 import 'package:parse_server_sdk/parse_server_sdk.dart';
+import './model/dataModel.dart';
 
 class Edit extends StatefulWidget {
 final String name;
@@ -80,7 +81,7 @@ class _EditState extends State<Edit> {
     // name.clear();
     // age.clear();
     // setState(() {
-      Control().data();
+     data();
     // });
   }
 }

@@ -1,12 +1,14 @@
-import 'package:crud/control/control.dart';
+
 import 'package:crud/model/dataModel.dart';
 import 'package:flutter/material.dart';
 import 'package:parse_server_sdk/parse_server_sdk.dart';
 import '../edit.dart';
 
 class DataSource extends DataTableSource{
-   List<Data> _list = list; 
- notifyListeners();
+    final List<Data> _lists = list;
+
+
+
   int _selectedCount = 0;
  final BuildContext context;
 
@@ -16,14 +18,17 @@ class DataSource extends DataTableSource{
   bool get isRowCountApproximate => false;
 
   @override
-  int get rowCount => _list.length;
+  int get rowCount=> list.length;
+  
 
   @override
   int get selectedRowCount => _selectedCount;
 
     @override
   DataRow getRow(int index) {
-final Data lists = _list[index];
+    //     assert(index >= 0);
+    // if (index >= _lists.length) return null;
+final Data lists = _lists[index];
     return  DataRow.byIndex(
       index: index,
       cells: <DataCell>[
@@ -47,7 +52,7 @@ final Data lists = _list[index];
     
                }
                void sort(getField(lists),bool ascending){
-                   _list.sort((a,b){
+                   list.sort((a,b){
                      if(!ascending){
                       final  c=a;
                        a=b;

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:parse_server_sdk/parse_server_sdk.dart';
-
-import 'control/control.dart';
 import 'model/dataModel.dart';
 
 class Add extends StatefulWidget {
@@ -12,7 +10,7 @@ class Add extends StatefulWidget {
 class _AddState extends State<Add> {
   TextEditingController name = TextEditingController();
   TextEditingController age = TextEditingController();
-  final control = Control();
+
 
 @override
   void initState() {
@@ -119,12 +117,12 @@ class _AddState extends State<Add> {
          setState((){
         list.add(Data(name: '${name.text}',age: int.parse(age.text)));
       });
+      // _lists
     name.clear();
     age.clear();
   //  setState(() {
-      control.data();
+      data();
     Navigator.pop(context);
-      print("object");
   //  });
    
   }

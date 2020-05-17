@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
+import './model/dataModel.dart';
 import 'add.dart';
-import 'control/control.dart';
 import 'edit.dart';
 import 'home.dart';
 
@@ -13,18 +12,16 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final control = Control();
   @override
   void initState() {
     super.initState();
    setState(() {
-      control.data();
+      data();
    });
   }
   @override
   Widget build(BuildContext context) {
     return 
-    ChangeNotifierProvider<Control>(create: (context) => Control(),child: 
     MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
@@ -37,7 +34,7 @@ class _MyAppState extends State<MyApp> {
     '/edit' : (BuildContext context) => new Edit(),
       },
       home: MyHomePage(),
-    ),
+    
     );
   }
 }
