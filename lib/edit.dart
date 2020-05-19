@@ -1,14 +1,14 @@
-
 import 'package:flutter/material.dart';
-import 'package:parse_server_sdk/parse_server_sdk.dart';
-import './model/dataModel.dart';
+import 'package:provider/provider.dart';
+import 'controller/controller.dart';
 
 class Edit extends StatefulWidget {
 final String name;
 final String id;
 final int age;
+final int index;
 
-  const Edit({Key key, this.name, this.id, this.age}) : super(key: key);
+  const Edit({Key key, this.name, this.id, this.age,this.index}) : super(key: key);
   @override
   _EditState createState() => _EditState();
 }
@@ -19,6 +19,7 @@ class _EditState extends State<Edit> {
   TextEditingController age = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    final co = Provider.of<Control>(context);
     return Scaffold(
       resizeToAvoidBottomPadding: false,
       appBar: AppBar(
@@ -53,7 +54,10 @@ class _EditState extends State<Edit> {
                     child: Text(
                       "Edit",
                     ),
-                    onPressed: edit,
+                    onPressed: (){
+                    co.edit(widget.id,name.text,age.text,widget.index);
+                    Navigator.of(context).pop();
+                    },
                                                           ),
                                                         )
                                                 ],
@@ -61,27 +65,5 @@ class _EditState extends State<Edit> {
                         );
                       }
                     
-                      void edit()async {
-                                                  await Parse().initialize(
-    "myAppId",
-    "http://192.168.8.109:1337/parse",
-    masterKey: "myMasterKey",
-    debug: false,
-  );
-
-  var edit = ParseObject('crud')
-  ..objectId = widget.id
-      ..set('name', '${name.text}')
-      ..set('age',int.parse( age.text));
-        await edit.save();
-        setState(() {
-        
-      // list.add(Data(name: '${name.text}',age: int.parse(age.text)));
-    });
-    // name.clear();
-    // age.clear();
-    // setState(() {
-     data();
-    // });
-  }
+                     
 }
